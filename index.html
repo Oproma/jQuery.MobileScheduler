@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll-probe.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <link rel="stylesheet" href="css/jQuery.MobileScheduler.css">
+        <script src="js/jQuery.MobileScheduler.js"></script>
+        <script>
+            $('document').ready(function(){
+                $('#calendar').MobileScheduler({
+                    date: new Date(2016, 07, 01),
+                    use24HourClock: true,
+                    events: [
+                        {
+                            startTime: new Date(2016, 01, 01),
+                            endTime: new Date(2016, 01, 02),
+                            allDay:true,
+                            title:"New Year's Day"
+                        },{
+                            startTime: new Date(2017, 01, 01),
+                            endTime: new Date(2017, 01, 02),
+                            allDay:true,
+                            title:"New Year's Day"
+                        },{
+                            startTime: new Date(2016, 03, 25),
+                            endTime: new Date(2016, 03, 26),
+                            allDay:true,
+                            title:"Good Friday"
+                        },{
+                            startTime: new Date(2017, 04, 14),
+                            endTime: new Date(2017, 04, 15),
+                            allDay:true,
+                            title:"Good Friday"
+                        },{
+                            startTime: new Date(2016, 03, 28),
+                            endTime: new Date(2016, 03, 29),
+                            allDay:true,
+                            title:"Easter Monday"
+                        },{
+                            startTime: new Date(2017, 04, 17),
+                            endTime: new Date(2016, 04, 18),
+                            allDay:true,
+                            title:"Easter Monday"
+                        },{
+                            startTime: new Date(2016, 05, 23),
+                            endTime: new Date(2016, 05, 24),
+                            allDay:true,
+                            title:"National Patriotes Day"
+                        },{
+                            startTime: new Date(2017, 05, 22),
+                            endTime: new Date(2017, 05, 23),
+                            allDay:true,
+                            title:"National Patriotes Day"
+                        },{
+                            startTime: new Date(2016, 06, 24),
+                            endTime: new Date(2016, 06, 25),
+                            allDay:true,
+                            title:"St. Jean Baptiste Day"
+                        },{
+                            startTime: new Date(2017, 05, 24),
+                            endTime: new Date(2017, 05, 25),
+                            allDay:true,
+                            title:"St. Jean Baptiste Day"
+                        },{
+                            startTime: new Date(2016, 06, 29),
+                            endTime: new Date(2016, 06, 30),
+                            allDay:true,
+                            title:"ATNPGO's Birthday"
+                        },{
+                            startTime: new Date(2017, 06, 29),
+                            endTime: new Date(2017, 06, 30),
+                            allDay:true,
+                            title:"ATNPGO's Birthday"
+                        },{
+                            startTime: new Date(2016, 07, 01),
+                            endTime: new Date(2016, 07, 01),
+                            allDay:true,
+                            title:"Canada Day"
+                        },{
+                            startTime: new Date(2017, 07, 01),
+                            endTime: new Date(2017, 07, 01),
+                            allDay:true,
+                            title:"Canada Day"
+                        },{
+                            startTime: new Date(2016, 09, 05),
+                            endTime: new Date(2016, 09, 06),
+                            allDay:true,
+                            title:"Labour Day"
+                        },{
+                            startTime: new Date(2017, 09, 04),
+                            endTime: new Date(2017, 09, 05),
+                            allDay:true,
+                            title:"Labour Day"
+                        },{
+                            startTime: new Date(2016, 11, 11),
+                            endTime: new Date(2016, 11, 11),
+                            allDay:true,
+                            title:"Remembrance Day"
+                        },{
+                            startTime: new Date(2017, 11, 11),
+                            endTime: new Date(2017, 11, 11),
+                            allDay:true,
+                            title:"Remembrance Day"
+                        },{
+                            startTime: new Date(2016, 12, 25),
+                            endTime: new Date(2016, 12, 26),
+                            allDay:true,
+                            title:"Christmas"
+                        },{
+                            startTime: new Date(2017, 12, 25),
+                            endTime: new Date(2017, 12, 26),
+                            allDay:true,
+                            title:"Christmas"
+                        },{
+                            startTime: new Date(2016, 12, 26),
+                            endTime: new Date(2016, 12, 27),
+                            allDay:true,
+                            title:"Boxing Day"
+                        },{
+                            startTime: new Date(2017, 12, 26),
+                            endTime: new Date(2017, 12, 27),
+                            allDay:true,
+                            title:"Boxing Day"
+                        }
+                    ],
+                    prevClass: 'fa-arrow-left',
+                    nextClass: 'fa-arrow-right',
+                    onEventClick: function (e, event) {
+                        console.log(event)
+                    }
+                });
+            });
+        </script>
+        <style>
+            html,body{
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #calendar {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <div id="calendar"></div>
+
+        
+    </body>
+</html>
