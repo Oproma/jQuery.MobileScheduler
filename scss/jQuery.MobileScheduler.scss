@@ -1,0 +1,195 @@
+﻿.jqms-calendar {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    & > .jqms-header {
+        width: 100%;
+        position: relative;
+        z-index: 4 !important;
+        height: 40pt;
+        & > .jqms-month {
+            padding-bottom: 4pt;
+            display: flex;
+            justify-content:center;
+            width: 100%;
+            z-index: 4;
+            & > a {
+                position: absolute;
+                &.jqms-next {
+                    right: 8pt;
+                    top: 4pt;
+                }
+                &.jqms-previous {
+                    left: 8pt;
+                    top: 4pt;
+                }
+            }
+        }
+        & > .jqms-days {
+            display: flex;
+            width: 100%;
+            @media only screen and (orientation: portrait) {
+                justify-content:center;
+            }
+
+            @media only screen and (orientation: landscape) {
+                justify-content: flex-start;
+            }
+            flex-grow: 1;
+            border-bottom: 1px solid $gray-lighter;
+            & > .jqms-day {
+                @media only screen and (orientation: portrait) {
+                    width: 14.28%;
+                }
+                @media only screen and (orientation: landscape) {
+                    width: 7.14%;
+                }
+                display: flex;
+                justify-content:center;
+                font-size: x-small;
+            }
+        }
+    }
+    & > .jqms-view-container {
+        display: flex;
+        margin-top: -6pt;
+        @media only screen and (orientation: portrait) {
+            flex-flow: column wrap;
+            height: 100%;
+        }
+
+        @media only screen and (orientation: landscape) {
+            flex-flow: row nowrap;
+            height: calc(100% - 40pt);
+        }
+        & > .jqms-month-view-container {
+            @media only screen and (orientation: portrait) {
+                height: 40%;
+                width: 100%;
+            }
+
+            @media only screen and (orientation: landscape) {
+                width: 50%;
+                height: 100%;
+                overflow-y: hidden;
+                overflow-x: auto;
+            }
+            & > .jqms-month-view {
+                width: 101%;
+                height: 100%;
+                @media only screen and (orientation: portrait) {
+                    border-bottom: 1px solid $gray-lighter;
+                }
+
+                order: 0;
+                z-index: 2 !important;
+                position: relative;
+                display: flex;
+                flex-grow: 1;
+                flex-wrap: wrap;
+                & > .jqms-day-cell {
+                    width: 14.28%;
+                    max-width: 14.28%;
+                    min-width: 14.28%;
+                    display: flex;
+                    justify-content: center;
+                    //padding-top: 8pt;
+                    flex-grow: 1;
+                    flex-wrap: wrap;
+                    height: 20%;
+                    &.jqms-today {
+                        & > span {
+                            &:first-of-type {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                    &.jqms-active {
+                        background-color: lighten($brand-primary, 50%);
+                    }
+                    &:not(:empty):nth-child(n+8) {
+                        border-top: 1px rgba(51, 51, 51, 0.25) solid;
+                    }
+                    & > span {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        height: 16px;
+                        &:not(:first-of-type) {
+                            color: rgba(51, 51, 51, 0.375);
+                            font-size: x-small;
+                        }
+                    }
+                }
+                &.jqms-long {
+                    & > .jqms-day-cell {
+                        height: 16.666666666%;
+                    }
+                }
+                &.jqms-short {
+                    & > .jqms-day-cell {
+                        height: 25%;
+                    }
+                }
+            }
+        }
+        & > .jqms-list-view {
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 1 !important;
+            order: 1;
+            @media only screen and (orientation: portrait) {
+                height: 60%;
+                width: 100%;
+                padding-bottom: 24pt;
+            }
+
+            @media only screen and (orientation: landscape) {
+                width: 50%;
+                height: 100%;
+                border-left: 1px solid $gray-lighter;
+            }
+            & > ul {
+                list-style: none;
+                padding-left: 0;
+                margin-top: 0;
+                :first-of-type {
+                    margin-top: 0px;
+                }
+                & > li {
+                    display: flex;
+                    margin: -12px 65px 11px 15px;
+                    border-bottom: 1px solid #ddd;
+
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 100%;
+                    // Remove the border from the last table view item
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+                    & > div {
+                        margin-right: 8pt;
+                        padding-bottom: 4pt;
+                        padding-top: 4pt;
+                        border-right: 1px $brand-primary solid;
+                        width: 30pt;
+                        min-width: 30pt;
+                        max-width: 30pt;
+                        & > span {
+                            display: block;
+                            font-size: xx-small;
+                        }
+                    }
+                    & > span {
+                        width: calc(100% - 60pt);
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+    }
+}
