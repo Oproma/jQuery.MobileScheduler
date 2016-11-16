@@ -70,6 +70,9 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
 	    }
 	});
 
+## DEMO
+[Mobile Demo](https://oproma.github.io/jQuery.MobileScheduler/)
+
 ## LICENSE
 	Copyright 2016 Oproma inc.
 
