@@ -1,4 +1,8 @@
-﻿.jqms-calendar {
+$gray-lighter: #eceeef !default;
+$brand-primary: #009BC9 !default;
+
+
+.jqms-calendar {
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -51,15 +55,16 @@
         }
     }
     & > .jqms-view-container {
-        display: flex;
         margin-top: -6pt;
         @media only screen and (orientation: portrait) {
             flex-flow: column wrap;
+            flex-wrap: wrap;
             height: 100%;
         }
 
         @media only screen and (orientation: landscape) {
             flex-flow: row nowrap;
+            flex-wrap: nowrap;
             height: calc(100% - 40pt);
         }
         & > .jqms-month-view-container {

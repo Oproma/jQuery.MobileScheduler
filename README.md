@@ -34,8 +34,8 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
     
 	{
 		title: "New Event",
-		startTime: new Date(),
-		endTime: new Date(),
+		start: new Date(),
+		end: new Date(),
 		allday: true
 	}
 
@@ -46,7 +46,12 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
 	$('#calendar').MobileScheduler({
 	    date: new Date(2016, 11, 11),
 	    use24HourClock: true,
-	    events: [],
+	    events: [{
+		    title: "New Event",
+		    start: new Date(),
+		    end: new Date(),
+		    allday: true
+		}],
 	    prevClass: 'fa-arrow-left',
 	    nextClass: 'fa-arrow-right',
 	    onEventClick: function (e, event) {
@@ -54,28 +59,11 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
 	    },
 	    labels: {
 	        allday: "all-day",
-	        months: [
-	            'January',
-	            'February',
-	            'March',
-	            'April',
-	            'May',
-	            'June',
-	            'July',
-	            'August',
-	            'September',
-	            'October',
-	            'November',
-	            'December'
+	        months: ['January', 'February', 'March', 'April', 'May', 'June',
+	            'July', 'August', 'September', 'October', 'November', 'December'
 	        ],
 	        days: [
-	            'Sun',
-	            'Mon',
-	            'Tue',
-	            'Wed',
-	            'Thu',
-	            'Fri',
-	            'Sat'
+	            'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
 	        ]
 	    }
 	});
