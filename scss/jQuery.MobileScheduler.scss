@@ -66,6 +66,7 @@ $brand-primary: #009BC9 !default;
             flex-flow: row nowrap;
             flex-wrap: nowrap;
             height: calc(100% - 40pt);
+            display: flex;
         }
         & > .jqms-month-view-container {
             @media only screen and (orientation: portrait) {
@@ -76,8 +77,7 @@ $brand-primary: #009BC9 !default;
             @media only screen and (orientation: landscape) {
                 width: 50%;
                 height: 100%;
-                overflow-y: hidden;
-                overflow-x: auto;
+                overflow: hidden;
             }
             & > .jqms-month-view {
                 width: 101%;
