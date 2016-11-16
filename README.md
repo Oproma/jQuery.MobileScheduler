@@ -5,9 +5,11 @@ An event scheduler/viewer for mobile. Tested with Cordova on iOS and Android.
 - CSS 3
 - jQuery 2.2.x +
 - underscore.js 1.8.x +
+
 ##SOFT DEPENDENCIES
 - animate.css
 - iScroll-probe 5.2.x+
+
 ## SETTINGS
 - **date** *Date* 
 	- The date to show.
@@ -26,6 +28,7 @@ An event scheduler/viewer for mobile. Tested with Cordova on iOS and Android.
 		- **allday** *String* "all-day"
 		- **months** *Array* A list of the names of the 12 months of the year.
 		- **days** *Array* A list of the days of the week.
+
 ## EVENTS
 jQuery.MobileScheduler expects a specific format for event objects. While this example is minimal, other fields can be included in the object and will be passed to the **onEventClick** event.
     
