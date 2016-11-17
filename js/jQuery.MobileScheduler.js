@@ -104,8 +104,40 @@
                 var $picker = $('<input type="month" style="height:0px;width:0px;position:absolute;top:-200px;left:-200px;display:inline" value="' + settings.date.getFullYear() + (month < 10 ? '-0' : '-') + month + '">');
                 $this.append($picker);
                 $picker.blur(function (e) {
-                    console.log($this.val());
-                    //$picker.remove();
+                    var parts = $(this).val().split('-');
+                    if (parts.length === 2) {
+                        var inClass = 'animated ', outClass = 'animated ', rebind = true;
+                        var newYear = parseInt(parts[0]);
+                        var newMonth = parseInt(parts[1]) - 1;
+                        if (newYear < settings.date.getFullYear()) {
+                            inClass += 'slideInLeft';
+                            outClass += 'slideOutRight';
+                        } else if (newYear > settings.date.getFullYear()) {
+                            inClass += 'slideInRight';
+                            outClass += 'slideOutLeft';
+                        } else {
+                            if (newMonth < settings.date.getMonth()) {
+                                inClass += 'slideInLeft';
+                                outClass += 'slideOutRight';
+                            } else if (newMonth > settings.date.getMonth()) {
+                                inClass += 'slideInRight';
+                                outClass += 'slideOutLeft';
+                            } else {
+                                rebind = false;
+                            }
+                        }
+                        if (rebind) {
+                            settings.date.setFullYear(newYear);
+                            settings.date.setMonth(newMonth);
+                            $this.find('.jqms-month-view').on('webkitAnimationEnd animationend', function () {
+                                bindCalendar(inClass);
+                            }).addClass(outClass);
+                        }
+                    }
+
+
+                    alert($(this).val());
+                    $picker.remove();
                 });
                 $picker.focus();
             });
