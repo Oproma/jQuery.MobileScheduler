@@ -50,36 +50,36 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
 ## EXAMPLE
 	<div id="calendar"></div>
 
-	$('#calendar').MobileScheduler({
-	    date: new Date(),
-	    use24HourClock: true,
+        $('#calendar').MobileScheduler({
+            date: new Date(),
+            use24HourClock: true,
             allowCreate: true,
-	    events: [{
-		    title: "New Event",
-		    start: new Date(),
-		    end: new Date(),
-		    allday: true
-		}],
-	    prevClass: 'fa fa-arrow-left',
-	    nextClass: 'fa fa-arrow-right',
+            events: [{
+                    title: "New Event",
+                    start: new Date(),
+                    end: new Date(),
+                    allday: true
+                }],
+            prevClass: 'fa fa-arrow-left',
+            nextClass: 'fa fa-arrow-right',
             onEventCreate: function (e) {
-	        console.log("New Event Requested");
-	    },
-	    onEventClick: function (e, event) {
-	        console.log(event)
-	    },
-	    labels: {
-	        allday: "all-day",
+                console.log("New Event Requested");
+            },
+            onEventClick: function (e, event) {
+                console.log(event)
+            },
+            labels: {
+                allday: "all-day",
                 newevent: "New",
                 today: "Today",
-	        months: ['January', 'February', 'March', 'April', 'May', 'June',
-	            'July', 'August', 'September', 'October', 'November', 'December'
-	        ],
-	        days: [
-	            'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-	        ]
-	    }
-	});
+                months: ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ],
+                days: [
+                    'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
+                ]
+            }
+        });
 
 ## DEMO
 [Mobile Demo](https://oproma.github.io/jQuery.MobileScheduler/)
