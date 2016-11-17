@@ -102,7 +102,7 @@
             });
 
             var $picker = $this.find('.jqms-picker');
-            $picker.on("change focusout blur", function (e) {
+            $picker.on("change", function (e) {
                 var parts = $(this).val().split('-');
                 if (parts.length === 2) {
                     var inClass = 'animated ', outClass = 'animated ', rebind = true;
