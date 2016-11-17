@@ -169,6 +169,8 @@
             width: calc(100% - 60pt);
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis; }
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center; }
 
 /*# sourceMappingURL=jQuery.MobileScheduler.css.map */

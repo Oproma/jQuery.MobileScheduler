@@ -218,6 +218,8 @@ $brand-primary: #009BC9 !default;
                         white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
+                        display: flex;
+                        align-items: center;
                     }
                 }
             }
