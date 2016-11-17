@@ -102,7 +102,7 @@
             });
 
             var $picker = $this.find('.jqms-picker');
-            $picker.on("change", function (e) {
+            $picker.on("change blur", function (e) {
                 var parts = $(this).val().split('-');
                 if (parts.length === 2) {
                     var inClass = 'animated ', outClass = 'animated ', rebind = true;
