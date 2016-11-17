@@ -101,7 +101,7 @@
                 nextMonth();
             });
 
-            header.find('.jqms-picker').on("focusout", function (e) {
+            header.find('.jqms-picker').on("change focusout blur", function (e) {
                 var parts = $(this).val().split('-');
                 if (parts.length === 2) {
                     var inClass = 'animated ', outClass = 'animated ', rebind = true;
