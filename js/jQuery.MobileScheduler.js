@@ -84,7 +84,7 @@
 
             var changeMonth = function (newYear, newMonth) {
                 if (_.isNumber(newYear) && _.isNumber(newMonth)) {
-                    var inClass = 'animated ', outClass = 'animated ', rebind = true;
+                    var inClass = 'animated ', outClass = 'animated ';
                     if (newYear < settings.date.getFullYear()) {
                         inClass += 'slideInLeft';
                         outClass += 'slideOutRight';
@@ -98,17 +98,13 @@
                         } else if (newMonth > settings.date.getMonth()) {
                             inClass += 'slideInRight';
                             outClass += 'slideOutLeft';
-                        } else {
-                            rebind = false;
                         }
                     }
-                    if (rebind) {
-                        settings.date.setFullYear(newYear);
-                        settings.date.setMonth(newMonth);
-                        $this.find('.jqms-month-view').on('webkitAnimationEnd animationend', function () {
-                            bindCalendar(inClass);
-                        }).addClass(outClass);
-                    }
+                    settings.date.setFullYear(newYear);
+                    settings.date.setMonth(newMonth);
+                    $this.find('.jqms-month-view').on('webkitAnimationEnd animationend', function () {
+                        bindCalendar(inClass);
+                    }).addClass(outClass);
                 }
             };
 
@@ -116,7 +112,13 @@
             header.find('.jqms-month-picker').click(function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                $this.find('.jqms-picker').css('display', 'flex');
+                $this.find('.jqms-picker').css('display', 'flex').on('click', function (e) {
+                    e.stopPropagation();
+                });
+                $this.on('click', function () {
+                    $this.find('.jqms-picker').css('display', 'none');
+                    $this.off('click');
+                });
             });
 
 
