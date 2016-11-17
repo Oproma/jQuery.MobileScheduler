@@ -23,6 +23,7 @@
                 $('#calendar').MobileScheduler({
                     date: new Date(2016, 6, 1),
                     use24HourClock: true,
+                    allowCreate: true,
                     events: [
                         {
                             start: new Date(2016, 0, 1),
@@ -138,6 +139,9 @@
                     ],
                     prevClass: 'fa fa-arrow-left',
                     nextClass: 'fa fa-arrow-right',
+                    onEventCreate: function (e) {
+                        alert('New Event Requested!');
+                    },
                     onEventClick: function (e, event) {
                         alert(event.title);
                     }

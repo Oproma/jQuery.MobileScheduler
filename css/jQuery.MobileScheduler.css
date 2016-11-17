@@ -68,12 +68,12 @@
       .jqms-calendar > .jqms-view-container {
         flex-flow: column wrap;
         flex-wrap: wrap;
-        height: 100%; } }
+        height: calc(100% - 75pt); } }
     @media only screen and (orientation: landscape) {
       .jqms-calendar > .jqms-view-container {
         flex-flow: row nowrap;
         flex-wrap: nowrap;
-        height: calc(100% - 40pt);
+        height: calc(100% - 75pt);
         display: flex; } }
     .jqms-calendar > .jqms-view-container > .jqms-month-view-container {
       position: relative;
@@ -172,5 +172,18 @@
             text-overflow: ellipsis;
             display: flex;
             align-items: center; }
+  .jqms-calendar > .jqms-footer {
+    height: 40pt;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #818a91; }
+    .jqms-calendar > .jqms-footer > a {
+      color: #009BC9;
+      margin: 0 20pt;
+      height: 100%;
+      display: flex;
+      align-items: center; }
 
 /*# sourceMappingURL=jQuery.MobileScheduler.css.map */

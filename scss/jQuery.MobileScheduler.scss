@@ -87,13 +87,13 @@ $brand-primary: #009BC9 !default;
         @media only screen and (orientation: portrait) {
             flex-flow: column wrap;
             flex-wrap: wrap;
-            height: 100%;
+            height: calc(100% - 75pt);
         }
 
         @media only screen and (orientation: landscape) {
             flex-flow: row nowrap;
             flex-wrap: nowrap;
-            height: calc(100% - 40pt);
+            height: calc(100% - 75pt);
             display: flex;
         }
         & > .jqms-month-view-container {
@@ -224,5 +224,21 @@ $brand-primary: #009BC9 !default;
                 }
             }
         }
+    }
+    & > .jqms-footer {
+        height: 40pt;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid $gray-light;
+        & > a {
+            color: $brand-primary;
+            margin: 0 20pt;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
     }
 }

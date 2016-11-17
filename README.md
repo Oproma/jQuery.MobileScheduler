@@ -19,10 +19,12 @@ On initialization, the plugin can accept a settings object. All values are optio
 | ------------------ |:--------------:|:------------------:| ----------- |
 | **date**           | *Date Object*  | new Date()           | The date at which to start the scheduler. |
 | **use24HourClock** | *boolean*      | true                 | Indicates whether to use a 24h clock or a 12 hour clock. |
+| **allowCreate**    | *boolean*      | true                 | Indicates whether to show the new event button. |
 | **events**         | *Array[event]* | []                   | The events to bind to the scheduler. See **EVENTS** for more information. |
 | **prevClass**      | *String*       | 'icon-arrow-left5'   | The css class to apply to the previous button.  |   
 | **nextClass**      | *String*       | 'icon-arrow-right5'  | The css class to apply to the next button.  |
-| **onEventClick**   | *function*     | An empty function    | The handler called when a user click/taps. The first parameter is the original event and the second parameter is the event object bound to the scheduler. |
+| **onEventClick**   | *function*     | An empty function    | The handler called when a user click/taps and event in the list. The first parameter is the original event and the second parameter is the event object bound to the scheduler. |
+| **onEventCreate**  | *function*     | An empty function    | The handler called when a user click/taps on the "New" button. The first parameter is the original event. |
 | **labels**         | *Object*       | See after            | The collection of labels to use with the scheduler. See after. |
 		
 Label Format
@@ -30,6 +32,8 @@ Label Format
 | Key                | data type       | Default Value      | Description |
 | ------------------ |:---------------:|:------------------:| ----------- |
 | **allday**         | *String*        | "all-day"          | The string to represent a full day event. |
+| **newevent**       | *String*        | "New"              | The string to use on the new event button. |
+| **today**          | *String*        | "Today"            | The string to use on the today button. |
 |  **months**        | *Array[String]* | ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] | A list of the names of the 12 months of the year. |
 | **days**           | *Array[String]* | ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] | A list of the days of the week in short form. |
 
@@ -38,10 +42,10 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
 
 | Key                | data type      | Description |
 | ------------------ |:--------------:| --------- |
-| **title**          | *String*  | The title or summary of the event. |
+| **title**          | *String*       | The title or summary of the event. |
 | **start**          | *Date Object*  | The date and time at which the event starts. All-day events should start at midnight the day of the event. |
 | **end**            | *Date Object*  | The date and time at which the event ends. All-day events should end at midnight the next day. |
-| **allday**          | *boolean*  | Indicates whether this is a full day event or not. |
+| **allday**         | *boolean*      | Indicates whether this is a full day event or not. |
 
 ## EXAMPLE
 	<div id="calendar"></div>
@@ -49,6 +53,7 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
 	$('#calendar').MobileScheduler({
 	    date: new Date(),
 	    use24HourClock: true,
+            allowCreate: true,
 	    events: [{
 		    title: "New Event",
 		    start: new Date(),
@@ -57,11 +62,16 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
 		}],
 	    prevClass: 'fa fa-arrow-left',
 	    nextClass: 'fa fa-arrow-right',
+            onEventCreate: function (e) {
+	        console.log("New Event Requested");
+	    },
 	    onEventClick: function (e, event) {
 	        console.log(event)
 	    },
 	    labels: {
 	        allday: "all-day",
+                newevent: "New",
+                today: "Today",
 	        months: ['January', 'February', 'March', 'April', 'May', 'June',
 	            'July', 'August', 'September', 'October', 'November', 'December'
 	        ],

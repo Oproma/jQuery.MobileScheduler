@@ -17,12 +17,16 @@
             // These are the defaults.
             date: new Date(),
             use24HourClock: true,
+            allowCreate: true,
             events: [],
             prevClass: 'icon-arrow-left5',
             nextClass: 'icon-arrow-right5',
             onEventClick: function (e, event) {},
+            onEventCreate: function (e) {},
             labels: {
                 allday: "all-day",
+                newevent: "New",
+                today: "Today",
                 months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
             }
@@ -108,7 +112,6 @@
                 }
             };
 
-
             header.find('.jqms-month-picker').click(function (e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -120,7 +123,6 @@
                     $this.off('click');
                 });
             });
-
 
             var $picker = header.find('.jqms-picker');
             $picker.data('year', settings.date.getFullYear());
@@ -249,6 +251,22 @@
 
             $this.append(content);
 
+            // build footer.
+            var footer = $('<div class="jqms-footer"><a class="jqms-today">' + settings.labels.today + '</a><a class="jqms-new-event">' + settings.labels.newevent + '</a></div>');
+            footer.find('.jqms-today').click(function () {
+                var now = new Date();
+                settings.date.setDate(now.getDate());
+                changeMonth(now.getFullYear(), now.getMonth());
+            });
+            if (settings.allowCreate) {
+                footer.find('.jqms-new-event').click(settings.onEventCreate);
+            } else {
+                footer.find('.jqms-new-event').hide();
+            }
+
+            $this.append(footer);
+
+            // bind scroll events.
             if (window.IScroll) {
                 var myScroll = new IScroll($this.find('.jqms-month-view-container')[0], {
                     disableMouse: true,
