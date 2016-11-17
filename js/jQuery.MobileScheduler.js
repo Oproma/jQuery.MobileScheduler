@@ -101,7 +101,7 @@
                 nextMonth();
             });
 
-            header.find('.jqms-picker').on("change", function (e) {
+            header.find('.jqms-picker').on("blur", function (e) {
                 console.log('focusout');
                 var parts = $(this).val().split('-');
                 if (parts.length === 2) {
