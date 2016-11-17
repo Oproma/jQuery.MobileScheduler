@@ -97,6 +97,9 @@ $brand-primary: #009BC9 !default;
             display: flex;
         }
         & > .jqms-month-view-container {
+            position: relative;
+            top: -4px;
+            z-index: 0;
             @media only screen and (orientation: portrait) {
                 height: 40%;
                 width: 100%;
@@ -110,14 +113,8 @@ $brand-primary: #009BC9 !default;
             & > .jqms-month-view {
                 width: 101%;
                 height: 100%;
-                @media only screen and (orientation: portrait) {
-                    border-bottom: 1px solid $gray-light;
-                }
-
-                order: 0;
                 -webkit-animation-duration: 0.15s;
                 animation-duration: 0.15s;
-                z-index: 2 !important;
                 position: relative;
                 display: flex;
                 flex-grow: 1;
@@ -171,9 +168,8 @@ $brand-primary: #009BC9 !default;
         & > .jqms-list-view {
             overflow-y: auto;
             overflow-x: hidden;
-            z-index: 1 !important;
-            order: 1;
             @media only screen and (orientation: portrait) {
+                border-top: 1px solid $gray-light;
                 height: 60%;
                 width: 100%;
                 padding-bottom: 24pt;

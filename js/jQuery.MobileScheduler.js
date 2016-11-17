@@ -237,7 +237,7 @@
                         endTime = (endhours < 10 ? '0' : '') + endhours + ':' + (event.end.getMinutes() < 10 ? '0' : '') + event.end.getMinutes() + (event.end.getHours() > 12 ? ' PM' : ' AM');
                     }
                 }
-                var listItem = $('<li><div><span>' + startTime + '</span><span>' + endTime + '</span></div><span>' + event.title + '</span></li>');
+                var listItem = $('<li><div><span>' + startTime + '</span><span>' + (event.allday ? '&nbsp;' : endTime) + '</span></div><span>' + event.title + '</span></li>');
 
                 listItem.data('event', JSON.stringify(event));
 

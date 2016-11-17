@@ -75,63 +75,61 @@
         flex-wrap: nowrap;
         height: calc(100% - 40pt);
         display: flex; } }
-    @media only screen and (orientation: portrait) {
-      .jqms-calendar > .jqms-view-container > .jqms-month-view-container {
-        height: 40%;
-        width: 100%; } }
-    @media only screen and (orientation: landscape) {
-      .jqms-calendar > .jqms-view-container > .jqms-month-view-container {
-        width: 50%;
-        height: 100%;
-        overflow: hidden; } }
-    .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view {
-      width: 101%;
-      height: 100%;
-      order: 0;
-      -webkit-animation-duration: 0.15s;
-      animation-duration: 0.15s;
-      z-index: 2 !important;
+    .jqms-calendar > .jqms-view-container > .jqms-month-view-container {
       position: relative;
-      display: flex;
-      flex-grow: 1;
-      flex-wrap: wrap; }
+      top: -4px;
+      z-index: 0; }
       @media only screen and (orientation: portrait) {
-        .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view {
-          border-bottom: 1px solid #818a91; } }
-      .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell {
-        width: 14.28%;
-        max-width: 14.28%;
-        min-width: 14.28%;
+        .jqms-calendar > .jqms-view-container > .jqms-month-view-container {
+          height: 40%;
+          width: 100%; } }
+      @media only screen and (orientation: landscape) {
+        .jqms-calendar > .jqms-view-container > .jqms-month-view-container {
+          width: 50%;
+          height: 100%;
+          overflow: hidden; } }
+      .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view {
+        width: 101%;
+        height: 100%;
+        -webkit-animation-duration: 0.15s;
+        animation-duration: 0.15s;
+        position: relative;
         display: flex;
-        justify-content: center;
         flex-grow: 1;
-        flex-wrap: wrap;
-        height: 20%; }
-        .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell.jqms-today > span:first-of-type {
-          text-decoration: underline; }
-        .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell.jqms-active {
-          background-color: #c9f3ff; }
-        .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell:not(:empty):nth-child(n+8) {
-          border-top: 1px rgba(51, 51, 51, 0.25) solid; }
-        .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell > span {
+        flex-wrap: wrap; }
+        .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell {
+          width: 14.28%;
+          max-width: 14.28%;
+          min-width: 14.28%;
           display: flex;
           justify-content: center;
-          width: 100%;
-          height: 16px; }
-          .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell > span:not(:first-of-type) {
-            color: rgba(51, 51, 51, 0.375);
-            font-size: x-small; }
-      .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view.jqms-long > .jqms-day-cell {
-        height: 16.666666666%; }
-      .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view.jqms-short > .jqms-day-cell {
-        height: 25%; }
+          flex-grow: 1;
+          flex-wrap: wrap;
+          height: 20%; }
+          .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell.jqms-today > span:first-of-type {
+            text-decoration: underline; }
+          .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell.jqms-active {
+            background-color: #c9f3ff; }
+          .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell:not(:empty):nth-child(n+8) {
+            border-top: 1px rgba(51, 51, 51, 0.25) solid; }
+          .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell > span {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 16px; }
+            .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view > .jqms-day-cell > span:not(:first-of-type) {
+              color: rgba(51, 51, 51, 0.375);
+              font-size: x-small; }
+        .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view.jqms-long > .jqms-day-cell {
+          height: 16.666666666%; }
+        .jqms-calendar > .jqms-view-container > .jqms-month-view-container > .jqms-month-view.jqms-short > .jqms-day-cell {
+          height: 25%; }
     .jqms-calendar > .jqms-view-container > .jqms-list-view {
       overflow-y: auto;
-      overflow-x: hidden;
-      z-index: 1 !important;
-      order: 1; }
+      overflow-x: hidden; }
       @media only screen and (orientation: portrait) {
         .jqms-calendar > .jqms-view-container > .jqms-list-view {
+          border-top: 1px solid #818a91;
           height: 60%;
           width: 100%;
           padding-bottom: 24pt; } }
