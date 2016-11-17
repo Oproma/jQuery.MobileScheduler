@@ -1,4 +1,4 @@
-$gray-lighter: #eceeef !default;
+$gray-light: #818a91 !default;
 $brand-primary: #009BC9 !default;
 
 
@@ -8,14 +8,6 @@ $brand-primary: #009BC9 !default;
     overflow: hidden;
     & *:focus,:active {
         outline: none !important;
-    }
-    & > .jqms-picker {
-        height: 0px;
-        width: 0px;
-        position: absolute;
-        top:-200px;
-        left:-200px;
-        display:inline;
     }
     & > .jqms-header {
         width: 100%;
@@ -53,7 +45,7 @@ $brand-primary: #009BC9 !default;
                 justify-content: flex-start;
             }
             flex-grow: 1;
-            border-bottom: 1px solid $gray-lighter;
+            border-bottom: 1px solid $gray-light;
             & > .jqms-day {
                 @media only screen and (orientation: portrait) {
                     width: 14.28%;
@@ -65,6 +57,29 @@ $brand-primary: #009BC9 !default;
                 justify-content:center;
                 font-size: x-small;
             }
+        }
+        & > .jqms-picker {
+            display: none;
+            flex-wrap: wrap;
+            padding: 20pt;
+            border: 1px solid $brand-primary;
+            background-color: #fff;
+            & > .jqms-picker-header {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                margin-bottom: 20pt;
+            }
+            & > .jqms-months {
+                width: 100%;
+                & > .jqms-month {
+                    width: 25%;
+                    height: 40pt;
+                    background-color: #fff;
+                    border: none;
+                }
+            }
+
         }
     }
     & > .jqms-view-container {
@@ -96,7 +111,7 @@ $brand-primary: #009BC9 !default;
                 width: 101%;
                 height: 100%;
                 @media only screen and (orientation: portrait) {
-                    border-bottom: 1px solid $gray-lighter;
+                    border-bottom: 1px solid $gray-light;
                 }
 
                 order: 0;
@@ -167,7 +182,7 @@ $brand-primary: #009BC9 !default;
             @media only screen and (orientation: landscape) {
                 width: 50%;
                 height: 100%;
-                border-left: 1px solid $gray-lighter;
+                border-left: 1px solid $gray-light;
             }
             & > ul {
                 list-style: none;

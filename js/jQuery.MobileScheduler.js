@@ -23,29 +23,8 @@
             onEventClick: function (e, event) {},
             labels: {
                 allday: "all-day",
-                months: [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
-                    'July',
-                    'August',
-                    'September',
-                    'October',
-                    'November',
-                    'December'
-                ],
-                days: [
-                    'Sun',
-                    'Mon',
-                    'Tue',
-                    'Wed',
-                    'Thu',
-                    'Fri',
-                    'Sat'
-                ]
+                months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
             }
         }, options);
 
@@ -80,11 +59,13 @@
             $this.empty();
             $this.addClass('jqms-calendar');
 
-            var month = settings.date.getMonth() % 11 + 1;
-            var header = $('<input type="month" class="jqms-picker" value="' + settings.date.getFullYear() + (month < 10 ? '-0' : '-') + month
-                    + '"><div class="jqms-header"><div class="jqms-month"><a class="jqms-previous"><i class="' + settings.prevClass
+            var header = $('<div class="jqms-header"><div class="jqms-month"><a class="jqms-previous"><i class="' + settings.prevClass
                     + '"></i></a><a class="jqms-month-picker">' + settings.labels.months[settings.date.getMonth()] + ', ' + settings.date.getFullYear()
-                    + '</a><a class="jqms-next"><i class="' + settings.nextClass + '"></a></div><div class="jqms-days" tabindex="-1"></div></div>');
+                    + '</a><a class="jqms-next"><i class="' + settings.nextClass + '"></i></a></div><div class="jqms-days"></div>'
+                    + '<div class="jqms-picker"><div class="jqms-picker-header"><a class="jqms-picker-previous"><i class="' + settings.prevClass
+                    + '"></i></a><span class="jqms-picker-title">' + settings.date.getFullYear() + '</span><a class="jqms-picker-next"><i class="'
+                    + settings.nextClass + '"></a></div><div class="jqms-months"></div></div></div>');
+
             var days = header.find('.jqms-days');
             _.each(settings.labels.days, function (day) {
                 days.append('<div class="jqms-day">' + day + '</div>');
@@ -101,12 +82,9 @@
                 nextMonth();
             });
 
-            var changeMonth = function (val) {
-                var parts = val.split('-');
-                if (parts.length === 2) {
+            var changeMonth = function (newYear, newMonth) {
+                if (_.isNumber(newYear) && _.isNumber(newMonth)) {
                     var inClass = 'animated ', outClass = 'animated ', rebind = true;
-                    var newYear = parseInt(parts[0]);
-                    var newMonth = parseInt(parts[1]) - 1;
                     if (newYear < settings.date.getFullYear()) {
                         inClass += 'slideInLeft';
                         outClass += 'slideOutRight';
@@ -134,20 +112,33 @@
                 }
             };
 
-            var handler = function (e) {
-                changeMonth($(this).val());
-                alert($(this).val());
-                header.find('.jqms-picker').one('blur change', handler);
-            };
-
-
-            header.find('.jqms-picker').one('blur change', handler);
 
             header.find('.jqms-month-picker').click(function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                $this.find('.jqms-picker').focus();
+                $this.find('.jqms-picker').css('display', 'flex');
             });
+
+
+            var $picker = header.find('.jqms-picker');
+            $picker.data('year', settings.date.getFullYear());
+            _.each(settings.labels.months, function (month, idx) {
+                $picker.find('.jqms-months').append('<button class="jqms-month" data-month="' + idx + '">' + month + '</button>');
+            });
+            $picker.find('.jqms-month').click(function () {
+                changeMonth(parseInt($picker.data('year')), parseInt($(this).data('month')));
+            });
+            $picker.find('.jqms-picker-previous').click(function (e) {
+                var newYear = parseInt($picker.data('year')) - 1;
+                $picker.data('year', newYear);
+                $picker.find('span.jqms-picker-title').text(newYear);
+            });
+            $picker.find('.jqms-picker-next').click(function (e) {
+                var newYear = parseInt($picker.data('year')) + 1;
+                $picker.data('year', newYear);
+                $picker.find('span.jqms-picker-title').text(newYear);
+            });
+
 
             $this.append(header);
 
