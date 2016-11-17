@@ -101,8 +101,7 @@
                 nextMonth();
             });
 
-            var $picker = $this.find('.jqms-picker');
-            $picker.on("change blur", function (e) {
+            header.find('.jqms-picker').on("change blur", function (e) {
                 var parts = $(this).val().split('-');
                 if (parts.length === 2) {
                     var inClass = 'animated ', outClass = 'animated ', rebind = true;
@@ -138,7 +137,7 @@
             header.find('.jqms-month-picker').click(function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                $picker.focus();
+                $this.find('.jqms-picker').focus();
             });
 
             $this.append(header);
