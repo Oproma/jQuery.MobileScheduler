@@ -101,8 +101,8 @@
                 nextMonth();
             });
 
-            header.find('.jqms-picker').on("change focusout blur", function (e) {
-                var parts = $(this).val().split('-');
+            var changeMonth = function (val) {
+                var parts = val.split('-');
                 if (parts.length === 2) {
                     var inClass = 'animated ', outClass = 'animated ', rebind = true;
                     var newYear = parseInt(parts[0]);
@@ -132,6 +132,14 @@
                         }).addClass(outClass);
                     }
                 }
+            };
+
+
+            header.find('.jqms-picker').on("change blur", function (e) {
+                changeMonth($(this).val());
+                alert($(this).val());
+            }).on('keypress', function (e) {
+                alert(e.which);
             });
 
             header.find('.jqms-month-picker').click(function (e) {
