@@ -134,11 +134,14 @@
                 }
             };
 
-
-            header.find('.jqms-picker').blur(function (e) {
+            var handler = function (e) {
                 changeMonth($(this).val());
                 alert($(this).val());
-            });
+                header.find('.jqms-picker').one('blur change', handler);
+            };
+
+
+            header.find('.jqms-picker').one('blur change', handler);
 
             header.find('.jqms-month-picker').click(function (e) {
                 e.preventDefault();
