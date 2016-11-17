@@ -79,7 +79,10 @@
             };
             $this.empty();
             $this.addClass('jqms-calendar');
-            var header = $('<div class="jqms-header"><div class="jqms-month"><a class="jqms-previous"><i class="' + settings.prevClass
+
+            var month = settings.date.getMonth() % 11 + 1;
+            var header = $('<input type="month" class="jqms-picker" value="' + settings.date.getFullYear() + (month < 10 ? '-0' : '-') + month
+                    + '"><div class="jqms-header"><div class="jqms-month"><a class="jqms-previous"><i class="' + settings.prevClass
                     + '"></i></a><a class="jqms-month-picker">' + settings.labels.months[settings.date.getMonth()] + ', ' + settings.date.getFullYear()
                     + '</a><a class="jqms-next"><i class="' + settings.nextClass + '"></a></div><div class="jqms-days" tabindex="-1"></div></div>');
             var days = header.find('.jqms-days');
@@ -97,46 +100,44 @@
                 e.stopPropagation();
                 nextMonth();
             });
-            header.find('.jqms-month-picker').click(function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                var month = settings.date.getMonth() % 11 + 1;
-                var $picker = $('<input type="month" style="height:0px;width:0px;position:absolute;top:-200px;left:-200px;display:inline" value="' + settings.date.getFullYear() + (month < 10 ? '-0' : '-') + month + '">');
-                $this.append($picker);
-                $picker.on("change focusout blur", function (e) {
 
-                    var parts = $(this).val().split('-');
-                    if (parts.length === 2) {
-                        var inClass = 'animated ', outClass = 'animated ', rebind = true;
-                        var newYear = parseInt(parts[0]);
-                        var newMonth = parseInt(parts[1]) - 1;
-                        if (newYear < settings.date.getFullYear()) {
+            var $picker = $this.find('.jqms-picker');
+            $picker.on("change focusout blur", function (e) {
+                var parts = $(this).val().split('-');
+                if (parts.length === 2) {
+                    var inClass = 'animated ', outClass = 'animated ', rebind = true;
+                    var newYear = parseInt(parts[0]);
+                    var newMonth = parseInt(parts[1]) - 1;
+                    if (newYear < settings.date.getFullYear()) {
+                        inClass += 'slideInLeft';
+                        outClass += 'slideOutRight';
+                    } else if (newYear > settings.date.getFullYear()) {
+                        inClass += 'slideInRight';
+                        outClass += 'slideOutLeft';
+                    } else {
+                        if (newMonth < settings.date.getMonth()) {
                             inClass += 'slideInLeft';
                             outClass += 'slideOutRight';
-                        } else if (newYear > settings.date.getFullYear()) {
+                        } else if (newMonth > settings.date.getMonth()) {
                             inClass += 'slideInRight';
                             outClass += 'slideOutLeft';
                         } else {
-                            if (newMonth < settings.date.getMonth()) {
-                                inClass += 'slideInLeft';
-                                outClass += 'slideOutRight';
-                            } else if (newMonth > settings.date.getMonth()) {
-                                inClass += 'slideInRight';
-                                outClass += 'slideOutLeft';
-                            } else {
-                                rebind = false;
-                            }
-                        }
-                        if (rebind) {
-                            settings.date.setFullYear(newYear);
-                            settings.date.setMonth(newMonth);
-                            $this.find('.jqms-month-view').on('webkitAnimationEnd animationend', function () {
-                                bindCalendar(inClass);
-                            }).addClass(outClass);
+                            rebind = false;
                         }
                     }
-                    $picker.remove();
-                });
+                    if (rebind) {
+                        settings.date.setFullYear(newYear);
+                        settings.date.setMonth(newMonth);
+                        $this.find('.jqms-month-view').on('webkitAnimationEnd animationend', function () {
+                            bindCalendar(inClass);
+                        }).addClass(outClass);
+                    }
+                }
+            });
+
+            header.find('.jqms-month-picker').click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
                 $picker.focus();
             });
 

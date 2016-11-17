@@ -4,6 +4,13 @@
   overflow: hidden; }
   .jqms-calendar *:focus, .jqms-calendar :active {
     outline: none !important; }
+  .jqms-calendar > .jqms-picker {
+    height: 0px;
+    width: 0px;
+    position: fixed;
+    top: -200px;
+    left: -200px;
+    display: inline; }
   .jqms-calendar > .jqms-header {
     width: 100%;
     position: relative;

@@ -9,6 +9,14 @@ $brand-primary: #009BC9 !default;
     & *:focus,:active {
         outline: none !important;
     }
+    & > .jqms-picker {
+        height: 0px;
+        width: 0px;
+        position: fixed;
+        top:-200px;
+        left:-200px;
+        display:inline;
+    }
     & > .jqms-header {
         width: 100%;
         position: relative;
