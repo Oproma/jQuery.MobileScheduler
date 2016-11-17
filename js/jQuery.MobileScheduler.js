@@ -1,4 +1,4 @@
-﻿/*
+/*
  * _____/\\\\\\\\\_____/\\\\\\\\\\\\\\\__/\\\\\_____/\\\__/\\\\\\\\\\\\\_______/\\\\\\\\\\\\_______/\\\\\______        
  *  ___/\\\\\\\\\\\\\__\///////\\\/////__\/\\\\\\___\/\\\_\/\\\/////////\\\___/\\\//////////______/\\\///\\\____       
  *   __/\\\/////////\\\_______\/\\\_______\/\\\/\\\__\/\\\_\/\\\_______\/\\\__/\\\_______________/\\\/__\///\\\__      
@@ -79,9 +79,9 @@
             };
             $this.empty();
             $this.addClass('jqms-calendar');
-            var header = $('<div class="jqms-header"><div class="jqms-month"><a class="jqms-previous"><i class="' + settings.prevClass + '"></i></a>'
-                    + settings.labels.months[settings.date.getMonth()] + ', ' + settings.date.getFullYear()
-                    + '<a class="jqms-next"><i class="' + settings.nextClass + '"></a></div><div class="jqms-days" tabindex="-1"></div></div>');
+            var header = $('<div class="jqms-header"><div class="jqms-month"><a class="jqms-previous"><i class="' + settings.prevClass
+                    + '"></i></a><a class="jqms-month-picker">' + settings.labels.months[settings.date.getMonth()] + ', ' + settings.date.getFullYear()
+                    + '</a><a class="jqms-next"><i class="' + settings.nextClass + '"></a></div><div class="jqms-days" tabindex="-1"></div></div>');
             var days = header.find('.jqms-days');
             _.each(settings.labels.days, function (day) {
                 days.append('<div class="jqms-day">' + day + '</div>');
@@ -96,6 +96,18 @@
                 e.preventDefault();
                 e.stopPropagation();
                 nextMonth();
+            });
+            header.find('.jqms-month-picker').click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var month = settings.date.getMonth() % 11 + 1;
+                var $picker = $('<input type="month" style="height:0px;width:0px;position:absolute;top:-200px;left:-200px;display:inline" value="' + settings.date.getFullYear() + (month < 10 ? '-0' : '-') + month + '">');
+                $this.append($picker);
+                $picker.blur(function (e) {
+                    console.log($this.val());
+                    //$picker.remove();
+                });
+                $picker.focus();
             });
 
             $this.append(header);

@@ -6,6 +6,9 @@ $brand-primary: #009BC9 !default;
     height: 100%;
     width: 100%;
     overflow: hidden;
+    & *:focus,:active {
+        outline: none !important;
+    }
     & > .jqms-header {
         width: 100%;
         position: relative;
@@ -18,7 +21,9 @@ $brand-primary: #009BC9 !default;
             width: 100%;
             z-index: 4;
             & > a {
-                position: absolute;
+                &:not(.jqms-month-picker) {
+                    position: absolute;
+                }
                 &.jqms-next {
                     right: 8pt;
                     top: 4pt;

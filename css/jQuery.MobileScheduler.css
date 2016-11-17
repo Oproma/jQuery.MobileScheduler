@@ -2,6 +2,8 @@
   height: 100%;
   width: 100%;
   overflow: hidden; }
+  .jqms-calendar *:focus, .jqms-calendar :active {
+    outline: none !important; }
   .jqms-calendar > .jqms-header {
     width: 100%;
     position: relative;
@@ -13,14 +15,14 @@
       justify-content: center;
       width: 100%;
       z-index: 4; }
-      .jqms-calendar > .jqms-header > .jqms-month > a {
+      .jqms-calendar > .jqms-header > .jqms-month > a:not(.jqms-month-picker) {
         position: absolute; }
-        .jqms-calendar > .jqms-header > .jqms-month > a.jqms-next {
-          right: 8pt;
-          top: 4pt; }
-        .jqms-calendar > .jqms-header > .jqms-month > a.jqms-previous {
-          left: 8pt;
-          top: 4pt; }
+      .jqms-calendar > .jqms-header > .jqms-month > a.jqms-next {
+        right: 8pt;
+        top: 4pt; }
+      .jqms-calendar > .jqms-header > .jqms-month > a.jqms-previous {
+        left: 8pt;
+        top: 4pt; }
     .jqms-calendar > .jqms-header > .jqms-days {
       display: flex;
       width: 100%;
