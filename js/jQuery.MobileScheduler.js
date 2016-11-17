@@ -135,11 +135,9 @@
             };
 
 
-            header.find('.jqms-picker').on("change blur", function (e) {
+            header.find('.jqms-picker').blur(function (e) {
                 changeMonth($(this).val());
                 alert($(this).val());
-            }).on('keypress', function (e) {
-                alert(e.which);
             });
 
             header.find('.jqms-month-picker').click(function (e) {
