@@ -13,40 +13,41 @@ An event scheduler/viewer for mobile. Tested with Cordova on iOS and Android.
 	- To be able to swipe between months.
 
 ## SETTINGS
-- **date** *Date* 
-	- The date to show.
-- **use24HourClock** *boolean* 
-	- Indicates whether to use a 24h clock or a 12 hour clock.
-- **events** *Array* 
-	- The events to bind to the calendar. See the **EVENTS** section for more information.
-- **prevClass** *String*
-	- The css class to apply to the previous button.
-- **nextClass** *String*
-	- The css class to apply to the next button.
-- **onEventClick** *function*
-	- The handler called when a user click/taps. The first parameter is the original event and the second parameter is the event object bound to the scheduler.
-- **labels** *Object*
-	- The collection of labels to use with the scheduler. Consists of
-		- **allday** *String* "all-day"
-		- **months** *Array* A list of the names of the 12 months of the year.
-		- **days** *Array* A list of the days of the week.
+On initialization, the plugin can accept a settings object. All values are optional.
+
+| Key                | data type      | Default Value      | Description |
+| ------------------ |:--------------:|:------------------:| ----------- |
+| **date**           | *Date Object*  | new Date()           | The date at which to start the scheduler. |
+| **use24HourClock** | *boolean*      | true                 | Indicates whether to use a 24h clock or a 12 hour clock. |
+| **events**         | *Array[event]* | []                   | The events to bind to the scheduler. See **EVENTS** for more information. |
+| **prevClass**      | *String*       | 'icon-arrow-left5'   | The css class to apply to the previous button.  |   
+| **nextClass**      | *String*       | 'icon-arrow-right5'  | The css class to apply to the next button.  |
+| **onEventClick**   | *function*     | An empty function    | The handler called when a user click/taps. The first parameter is the original event and the second parameter is the event object bound to the scheduler. |
+| **labels**         | *Object*       | See after            | The collection of labels to use with the scheduler. See after. |
+		
+Label Format
+
+| Key                | data type       | Default Value      | Description |
+| ------------------ |:---------------:|:------------------:| ----------- |
+| **allday**         | *String*        | "all-day"          | The string to represent a full day event. |
+|  **months**        | *Array[String]* | ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] | A list of the names of the 12 months of the year. |
+| **days**           | *Array[String]* | ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] | A list of the days of the week in short form. |
 
 ## EVENTS
 jQuery.MobileScheduler expects a specific format for event objects. While this example is minimal, other fields can be included in the object and will be passed to the **onEventClick** event.
-    
-	{
-		title: "New Event",
-		start: new Date(),
-		end: new Date(),
-		allday: true
-	}
+
+| Key                | data type      | Description |
+| ------------------ |:--------------:| --------- |
+| **title**          | *String*  | The title or summary of the event. |
+| **start**          | *Date Object*  | The date and time at which the event starts. All-day events should start at midnight the day of the event. |
+| **end**            | *Date Object*  | The date and time at which the event ends. All-day events should end at midnight the next day. |
+| **allday**          | *boolean*  | Indicates whether this is a full day event or not. |
 
 ## EXAMPLE
 	<div id="calendar"></div>
 
-
 	$('#calendar').MobileScheduler({
-	    date: new Date(2016, 11, 11),
+	    date: new Date(),
 	    use24HourClock: true,
 	    events: [{
 		    title: "New Event",
@@ -54,8 +55,8 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
 		    end: new Date(),
 		    allday: true
 		}],
-	    prevClass: 'fa-arrow-left',
-	    nextClass: 'fa-arrow-right',
+	    prevClass: 'fa fa-arrow-left',
+	    nextClass: 'fa fa-arrow-right',
 	    onEventClick: function (e, event) {
 	        console.log(event)
 	    },
