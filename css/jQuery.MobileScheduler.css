@@ -47,14 +47,18 @@
     .jqms-calendar > .jqms-header > .jqms-picker {
       display: none;
       flex-wrap: wrap;
-      padding: 20pt;
+      padding: 0 20pt 20pt 20pt;
       border: 1px solid #009BC9;
       background-color: #fff; }
       .jqms-calendar > .jqms-header > .jqms-picker > .jqms-picker-header {
         width: 100%;
         display: flex;
-        justify-content: space-around;
-        margin-bottom: 20pt; }
+        justify-content: space-around; }
+        .jqms-calendar > .jqms-header > .jqms-picker > .jqms-picker-header > a {
+          padding: 20pt 0;
+          width: 50%; }
+          .jqms-calendar > .jqms-header > .jqms-picker > .jqms-picker-header > a.jqms-picker-next > i {
+            float: right; }
       .jqms-calendar > .jqms-header > .jqms-picker > .jqms-months {
         width: 100%; }
         .jqms-calendar > .jqms-header > .jqms-picker > .jqms-months > .jqms-month {
@@ -77,7 +81,7 @@
         display: flex; } }
     .jqms-calendar > .jqms-view-container > .jqms-month-view-container {
       position: relative;
-      top: -4px;
+      top: -3pt;
       z-index: 0; }
       @media only screen and (orientation: portrait) {
         .jqms-calendar > .jqms-view-container > .jqms-month-view-container {

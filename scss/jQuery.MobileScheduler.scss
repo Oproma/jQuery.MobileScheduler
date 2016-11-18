@@ -61,14 +61,22 @@ $brand-primary: #009BC9 !default;
         & > .jqms-picker {
             display: none;
             flex-wrap: wrap;
-            padding: 20pt;
+            padding: 0 20pt 20pt 20pt;
             border: 1px solid $brand-primary;
             background-color: #fff;
             & > .jqms-picker-header {
                 width: 100%;
                 display: flex;
                 justify-content: space-around;
-                margin-bottom: 20pt;
+                & > a {
+                    padding: 20pt 0;
+                    width: 50%;
+                    &.jqms-picker-next {
+                        & > i {
+                            float: right;
+                        }
+                    }
+                }
             }
             & > .jqms-months {
                 width: 100%;
@@ -98,7 +106,7 @@ $brand-primary: #009BC9 !default;
         }
         & > .jqms-month-view-container {
             position: relative;
-            top: -4px;
+            top: -3pt;
             z-index: 0;
             @media only screen and (orientation: portrait) {
                 height: 40%;
