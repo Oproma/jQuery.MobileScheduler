@@ -54,8 +54,9 @@
         width: 100%;
         display: flex;
         justify-content: space-around; }
+        .jqms-calendar > .jqms-header > .jqms-picker > .jqms-picker-header > * {
+          padding: 20pt 0; }
         .jqms-calendar > .jqms-header > .jqms-picker > .jqms-picker-header > a {
-          padding: 20pt 0;
           width: 50%; }
           .jqms-calendar > .jqms-header > .jqms-picker > .jqms-picker-header > a.jqms-picker-next > i {
             float: right; }

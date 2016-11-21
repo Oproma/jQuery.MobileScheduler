@@ -68,8 +68,10 @@ $brand-primary: #009BC9 !default;
                 width: 100%;
                 display: flex;
                 justify-content: space-around;
-                & > a {
+                & > * {
                     padding: 20pt 0;
+                }
+                & > a {
                     width: 50%;
                     &.jqms-picker-next {
                         & > i {
