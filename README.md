@@ -19,12 +19,11 @@ On initialization, the plugin can accept a settings object. All values are optio
 | ------------------ |:--------------:|:------------------:| ----------- |
 | **date**           | *Date Object*  | new Date()           | The date at which to start the scheduler. |
 | **use24HourClock** | *boolean*      | true                 | Indicates whether to use a 24h clock or a 12 hour clock. |
-| **allowCreate**    | *boolean*      | true                 | Indicates whether to show the new event button. |
 | **events**         | *Array[event]* | []                   | The events to bind to the scheduler. See **EVENTS** for more information. |
 | **prevClass**      | *String*       | 'icon-arrow-left5'   | The css class to apply to the previous button.  |   
 | **nextClass**      | *String*       | 'icon-arrow-right5'  | The css class to apply to the next button.  |
-| **onEventClick**   | *function*     | An empty function    | The handler called when a user click/taps and event in the list. The first parameter is the original event and the second parameter is the event object bound to the scheduler. |
-| **onEventCreate**  | *function*     | An empty function    | The handler called when a user click/taps on the "New" button. The first parameter is the original event. |
+| **onEventClick**   | *function*     | An empty function    | The handler called when a user click/taps and event in the list. The first parameter is the event object bound to the scheduler and the second parameter is the original event. |
+| **onEventCreate**  | *function*     | An empty function    | The handler called when a user click/taps on the "New" button. The first parameter is the currently selected date in the scheduler and the second parameter is the original event. If null, the create event button is hidden.|
 | **labels**         | *Object*       | See after            | The collection of labels to use with the scheduler. See after. |
 		
 Label Format
@@ -53,7 +52,6 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
     $('#calendar').MobileScheduler({
         date: new Date(),
         use24HourClock: true,
-        allowCreate: true,
         events: [{
                 title: "New Event",
                 start: new Date(),
@@ -62,8 +60,8 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
             }],
         prevClass: 'fa fa-arrow-left',
         nextClass: 'fa fa-arrow-right',
-        onEventCreate: function (e) {
-            console.log("New Event Requested");
+        onEventCreate: function (e, date) {
+            console.log(date);
         },
         onEventClick: function (e, event) {
             console.log(event)

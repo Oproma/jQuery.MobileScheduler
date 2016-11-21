@@ -17,12 +17,11 @@
             // These are the defaults.
             date: new Date(),
             use24HourClock: true,
-            allowCreate: true,
             events: [],
             prevClass: 'icon-arrow-left5',
             nextClass: 'icon-arrow-right5',
-            onEventClick: function (e, event) {},
-            onEventCreate: function (e) {},
+            onEventClick: function (event, e) {},
+            onEventCreate: function (date, e) {},
             labels: {
                 allday: "all-day",
                 newevent: "New",
@@ -244,7 +243,7 @@
                 listItem.data('event', JSON.stringify(event));
 
                 listItem.click(function (e) {
-                    settings.onEventClick(e, JSON.parse($(this).data('event')));
+                    settings.onEventClick(JSON.parse($(this).data('event')), e);
                 });
                 listItems.append(listItem);
             });
@@ -258,8 +257,10 @@
                 settings.date.setDate(now.getDate());
                 changeMonth(now.getFullYear(), now.getMonth());
             });
-            if (settings.allowCreate) {
-                footer.find('.jqms-new-event').click(settings.onEventCreate);
+            if (_.isFunction(settings.onEventCreate)) {
+                footer.find('.jqms-new-event').click(function (e) {
+                    settings.onEventCreate(settings.date, e);
+                });
             } else {
                 footer.find('.jqms-new-event').hide();
             }
