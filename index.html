@@ -138,10 +138,10 @@
                     ],
                     prevClass: 'fa fa-arrow-left',
                     nextClass: 'fa fa-arrow-right',
-                    onEventCreate: function (e) {
+                    onEventCreate: function (date, e) {
                         alert('New Event Requested!');
                     },
-                    onEventClick: function (e, event) {
+                    onEventClick: function (event, e) {
                         alert(event.title);
                     }
                 });
