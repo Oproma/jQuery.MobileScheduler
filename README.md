@@ -46,6 +46,8 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
 | **end**            | *Date Object*  | The date and time at which the event ends. All-day events should end at midnight the next day. |
 | **allday**         | *boolean*      | Indicates whether this is a full day event or not. |
 
+For more information on Date Objects, please refer to the [Mozilla Developer Network documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+
 ## EXAMPLE
     <div id="calendar"></div>
 
