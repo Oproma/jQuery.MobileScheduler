@@ -1,5 +1,5 @@
 $gray-light: #818a91 !default;
-$brand-primary: #009BC9 !default;
+$brand-primary: #A05EB5 !default;
 
 
 .jqms-calendar {
@@ -147,7 +147,7 @@ $brand-primary: #009BC9 !default;
                         }
                     }
                     &.jqms-active {
-                        background-color: lighten($brand-primary, 50%);
+                        background-color: lighten($brand-primary, 25%);
                     }
                     &:not(:empty):nth-child(n+8) {
                         border-top: 1px rgba(51, 51, 51, 0.25) solid;
@@ -221,6 +221,8 @@ $brand-primary: #009BC9 !default;
                         & > span {
                             display: block;
                             font-size: xx-small;
+                            text-align: right;
+                            margin-right: 4pt;
                         }
                     }
                     & > span {

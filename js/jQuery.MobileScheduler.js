@@ -26,6 +26,7 @@
                 allday: "all-day",
                 newevent: "New",
                 today: "Today",
+                ends: "Ends",
                 months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
             }
@@ -149,17 +150,20 @@
             var monthView = content.find('.jqms-month-view');
 
             var monthStart = new Date(settings.date.getFullYear(), settings.date.getMonth(), 1);
+            var monthEnd = new Date(settings.date.getFullYear(), settings.date.getMonth() + 1, 1);
             var fillerCellCount = 0;
             for (; fillerCellCount < monthStart.getDay(); fillerCellCount++) {
                 monthView.append('<div class="jqms-day-cell"></div>');
             }
 
             var monthEvents = _.filter(settings.events, function (event) {
-                if (event && event.start && settings && settings.date) {
-                    if (event.allday) {
-                        return event.start.getUTCFullYear() === settings.date.getFullYear() && event.start.getUTCMonth() === settings.date.getMonth();
-                    } else {
-                        return event.start.getFullYear() === settings.date.getFullYear() && event.start.getMonth() === settings.date.getMonth();
+                if (event && event.start && event.end && settings && settings.date) {
+                    if (event.start >= monthStart && event.start < monthEnd) {
+                        return true;
+                    } else if (event.end >= monthStart && event.end < monthEnd) {
+                        return true;
+                    } else if (event.start < monthStart && event.end > monthEnd) {
+                        return true;
                     }
                 }
                 return false;
@@ -186,9 +190,19 @@
                 }
 
 
-
+                var dayStart = new Date(settings.date.getFullYear(), settings.date.getMonth(), i);
+                var dayEnd = new Date(settings.date.getFullYear(), settings.date.getMonth(), i + 1);
                 if (_.filter(monthEvents, function (event) {
-                    return event && event.start && ((!event.allday && event.start.getDate() === i) || (event.allday && event.start.getUTCDate() === i));
+                    if (event && event.start && event.end) {
+                        if (event.start >= dayStart && event.start < dayEnd) {
+                            return true;
+                        } else if (event.end > dayStart && event.end < dayEnd) {
+                            return true;
+                        } else if (event.start < dayStart && event.end >= dayEnd) {
+                            return true;
+                        }
+                    }
+                    return false;
                 }).length > 0) {
                     cell.append('<span>&#9679;</span>');
                 }
@@ -211,33 +225,65 @@
             });
 
             // bind day list.
+            var dayStart = new Date(settings.date.getFullYear(), settings.date.getMonth(), settings.date.getDate());
+            var dayEnd = new Date(settings.date.getFullYear(), settings.date.getMonth(), settings.date.getDate() + 1);
             var dayEvents = _.filter(monthEvents, function (event) {
-                return event && event.start && ((!event.allday && event.start.getDate() === settings.date.getDate()) || (event.allday && event.start.getUTCDate() === settings.date.getDate()));
+                if (event && event.start && event.end) {
+                    if (event.start >= dayStart && event.start < dayEnd) {
+                        return true;
+                    } else if (event.end > dayStart && event.end < dayEnd) {
+                        return true;
+                    } else if (event.start < dayStart && event.end >= dayEnd) {
+                        return true;
+                    }
+                }
+                return false;
             });
 
             var listItems = content.find('.jqms-list-items');
+            var dayStart = new Date(settings.date.getFullYear(), settings.date.getMonth(), settings.date.getDate());
+            var dayEnd = new Date(settings.date.getFullYear(), settings.date.getMonth(), settings.date.getDate() + 1);
+
             _.each(_.sortBy(dayEvents, function (event) {
                 return event.start.getTime();
             }), function (event) {
-                var startTime = settings.labels.allday;
-                var endTime = settings.labels.allday;
-                if (!event.allday) {
+                var startTime, endTime;
+
+                if (event.start.getTime() === dayStart.getTime() && event.end.getTime() === dayEnd.getTime()) {
+                    startTime = settings.labels.allday;
+                    endTime = '&nbsp;';
+                } else if (event.start >= dayStart && event.start < dayEnd) {
                     if (settings.use24HourClock) {
                         startTime = (event.start.getHours() < 10 ? '0' : '') + event.start.getHours() + ':' + (event.start.getMinutes() < 10 ? '0' : '') + event.start.getMinutes();
-                        endTime = (event.end.getHours() < 10 ? '0' : '') + event.end.getHours() + ':' + (event.end.getMinutes() < 10 ? '0' : '') + event.end.getMinutes();
                     } else {
                         var starthours = event.start.getHours() % 12;
-                        var endhours = event.end.getHours() % 12;
                         if (starthours === 0) {
                             starthours = 12;
                         }
+                        startTime = (starthours < 10 ? '0' : '') + starthours + ':' + (event.start.getMinutes() < 10 ? '0' : '') + event.start.getMinutes() + (event.start.getHours() > 12 ? ' PM' : ' AM');
+                    }
+                } else if (event.start < dayStart && event.end >= dayEnd) {
+                    startTime = settings.labels.allday;
+                } else {
+                    startTime = settings.labels.ends;
+                }
+
+                if (event.end > dayStart && event.end < dayEnd) {
+                    if (settings.use24HourClock) {
+                        endTime = (event.end.getHours() < 10 ? '0' : '') + event.end.getHours() + ':' + (event.end.getMinutes() < 10 ? '0' : '') + event.end.getMinutes();
+                    } else {
+                        var endhours = event.end.getHours() % 12;
                         if (endhours === 0) {
                             endhours = 12;
                         }
-                        startTime = (starthours < 10 ? '0' : '') + starthours + ':' + (event.start.getMinutes() < 10 ? '0' : '') + event.start.getMinutes() + (event.start.getHours() > 12 ? ' PM' : ' AM');
                         endTime = (endhours < 10 ? '0' : '') + endhours + ':' + (event.end.getMinutes() < 10 ? '0' : '') + event.end.getMinutes() + (event.end.getHours() > 12 ? ' PM' : ' AM');
                     }
+                } else if (event.end < dayStart && event.end >= dayEnd) {
+                    endTime = settings.labels.allday;
+                } else {
+                    endTime = '&nbsp;';
                 }
+
                 var listItem = $('<li><div><span>' + startTime + '</span><span>' + (event.allday ? '&nbsp;' : endTime) + '</span></div><span>' + event.title + '</span></li>');
 
                 listItem.data('event', JSON.stringify(event));

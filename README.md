@@ -33,6 +33,7 @@ Label Format
 | **allday**         | *String*        | "all-day"          | The string to represent a full day event. |
 | **newevent**       | *String*        | "New"              | The string to use on the new event button. |
 | **today**          | *String*        | "Today"            | The string to use on the today button. |
+| **ends**           | *String*        | "Ends"             | The string to use to indicate the end of a multi day event. |
 |  **months**        | *Array[String]* | ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] | A list of the names of the 12 months of the year. |
 | **days**           | *Array[String]* | ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] | A list of the days of the week in short form. |
 
@@ -44,7 +45,6 @@ jQuery.MobileScheduler expects a specific format for event objects. While this e
 | **title**          | *String*       | The title or summary of the event. |
 | **start**          | *Date Object*  | The date and time at which the event starts. All-day events should start at midnight the day of the event. |
 | **end**            | *Date Object*  | The date and time at which the event ends. All-day events should end at midnight the next day. |
-| **allday**         | *boolean*      | Indicates whether this is a full day event or not. |
 
 For more information on Date Objects, please refer to the [Mozilla Developer Network documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
@@ -57,8 +57,7 @@ For more information on Date Objects, please refer to the [Mozilla Developer Net
         events: [{
                 title: "New Event",
                 start: new Date(),
-                end: new Date(),
-                allday: true
+                end: new Date()
             }],
         prevClass: 'fa fa-arrow-left',
         nextClass: 'fa fa-arrow-right',
@@ -72,6 +71,7 @@ For more information on Date Objects, please refer to the [Mozilla Developer Net
             allday: "all-day",
             newevent: "New",
             today: "Today",
+            ends: "Ends",
             months: ['January', 'February', 'March', 'April', 'May', 'June',
                 'July', 'August', 'September', 'October', 'November', 'December'
             ],
