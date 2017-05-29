@@ -302,6 +302,8 @@
                 var now = new Date();
                 settings.date.setDate(now.getDate());
                 changeMonth(now.getFullYear(), now.getMonth());
+                $('.jqms-active').removeClass('jqms-active');
+                $('.jqms-today').addClass('jqms-active');
             });
             if (_.isFunction(settings.onEventCreate)) {
                 footer.find('.jqms-new-event').click(function (e) {
