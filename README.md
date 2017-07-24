@@ -6,7 +6,7 @@ An event scheduler/viewer for mobile. Tested with Cordova on iOS and Android.
 - jQuery 2.2.x +
 - underscore.js 1.8.x +
 
-##SOFT DEPENDENCIES
+## SOFT DEPENDENCIES
 - animate.css
 	- For smoother transitions.
 - iScroll-probe 5.2.x+
@@ -99,5 +99,5 @@ For more information on Date Objects, please refer to the [Mozilla Developer Net
 	See the License for the specific language governing permissions and
 	limitations under the License.
 
-##AUTHOR
+## AUTHOR
 @atnpgo
